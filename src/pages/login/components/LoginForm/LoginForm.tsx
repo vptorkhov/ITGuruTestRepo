@@ -31,7 +31,13 @@ export default function LoginForm() {
   async function onSubmit() {
     await trigger();
     if (isValid) {
-      console.log("успешный логин");
+      try {
+        console.log("успешный логин", dataInForm);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        reset();
+      }
     }
   }
 
