@@ -45,17 +45,17 @@
 }
 
 .button.m {
-  --button-padding: 12rem 20rem !important;
+  --button-padding: 10rem 20rem !important;
   --button-font-size: 16rem !important;
 }
 
 .button.l {
-  --button-padding: 16rem 24rem !important;
+  --button-padding: 12rem 24rem !important;
   --button-font-size: 18rem !important;
 }
 
 .button.s {
-  --button-padding: 10rem 16rem !important;
+  --button-padding: 8rem 16rem !important;
   --button-font-size: 14rem !important;
   --button-border-radius: 12rem;
 }
@@ -103,7 +103,7 @@
   --button-bg-color: var(--primary-color);
   --button-border-hover: var(--primary-color);
   --button-color-hover: var(--white);
-  --button-bg-color-hover: #c2263c;
+  --button-bg-color-hover: var(--primary-hover);
 }
 
 .button.neutral {

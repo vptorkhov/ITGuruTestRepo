@@ -1,8 +1,6 @@
-"use client";
-import React from "react";
 import styles from "./button.module.css";
 import clsx from "clsx";
-import { TButton } from "./Button";
+import type { TButton } from "./Button";
 
 const fontSize = {
   l: "text-xl-semi",

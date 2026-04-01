@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./input.module.css";
-import { TInput } from "./Input";
+import type { TInput } from "./Input";
 import clsx from "clsx";
 
 export type TTextarea = Omit<TInput, "type"> & {
@@ -51,7 +51,7 @@ function Textarea({
       className={clsx(
         styles.block,
         error && "input-with-error",
-        disable && styles.disable
+        disable && styles.disable,
       )}
     >
       {title && (
@@ -67,7 +67,7 @@ function Textarea({
           "d-flex",
           error && styles.error,
           disable && styles.disabled,
-          addClass
+          addClass,
         )}
       >
         {icon && <div className={styles.icon}>{icon}</div>}

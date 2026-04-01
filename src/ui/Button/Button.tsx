@@ -8,7 +8,7 @@ export type TButton = {
 	rightIcon?: React.ReactNode;
 	variant?: "primary" | "neutral";
 	styleVariant?: "fill" | "ghost" | "stroke" | "clear";
-	addClass?: string;
+	className?: string;
 	size?: "m" | "l" | "s" | "xs";
 	mobSize?: "m" | "l" | "s" | "xs";
 	onClick?: () => void;
@@ -30,7 +30,7 @@ function Button({
 	rightIcon,
 	variant = "primary",
 	styleVariant = "fill",
-	addClass,
+	className,
 	onClick,
 	size = "m",
 	mobSize,
@@ -44,7 +44,7 @@ function Button({
 				styles[variant],
 				styles["button"],
 				styles[styleVariant],
-				addClass,
+				className,
 				styles[size],
 				disabled && styles["disabled"],
 				onlyIcon && styles["only-icon"],

@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rem;
+  min-height: calc(100 * var(--vh));
+}
+
+.formWrap {
+  width: 527rem;
+  max-width: 100%;
+}

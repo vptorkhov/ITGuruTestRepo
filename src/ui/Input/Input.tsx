@@ -1,9 +1,11 @@
 "use client";
-import React, { ReactNode, RefObject } from "react";
+import React, { useState, type ReactNode, type RefObject } from "react";
 import cx from "clsx";
 import styles from "./input.module.css";
-import { FieldError } from "react-hook-form";
+import type { FieldError } from "react-hook-form";
 import CloseCross from "@/icons/CloseCross";
+import EyeIcon from "@/icons/EyeIcon";
+import clsx from "clsx";
 
 const validateLettersOnly = (value: string): string => {
   return value.replace(/[^a-zA-Zа-яА-ЯёЁ\s\-–—]/g, "");
@@ -46,7 +48,7 @@ export type TInput = {
   clearBtn?: boolean;
   caption?: string;
   onKeyPress?: () => void;
-  ref?: RefObject<HTMLInputElement | null>
+  ref?: RefObject<HTMLInputElement | null>;
 };
 
 const fontSize = {
@@ -54,12 +56,6 @@ const fontSize = {
   s: "text-m",
   m: "text-l",
   l: "text-xl",
-};
-const fontTitleSize = {
-  xs: "text-s",
-  s: "text-s",
-  m: "text-m",
-  l: "text-l",
 };
 
 function Input({
@@ -84,6 +80,22 @@ function Input({
   maxLength = 500,
   ref,
 }: TInput) {
+  const [isPasswordHovered, setIsPasswordHovered] = useState(false);
+  const [isPasswordToggled, setIsPasswordToggled] = useState(false);
+
+  const isPasswordField = type === "password";
+  const isPasswordVisible =
+    isPasswordField && (isPasswordHovered || isPasswordToggled);
+
+  const inputType =
+    type === "letters-only" ||
+    type === "digits-only" ||
+    type === "latin-cyrillic-digits-only"
+      ? "text"
+      : isPasswordVisible
+        ? "text"
+        : type;
+
   const handleChange = (inputValue: string) => {
     if (type === "letters-only") {
       // Фильтруем ввод, оставляя только буквы
@@ -107,16 +119,24 @@ function Input({
     }
   };
 
+  const handlePasswordTogglePointerUp = (
+    e: React.PointerEvent<HTMLButtonElement>,
+  ) => {
+    if (e.pointerType !== "mouse") {
+      setIsPasswordToggled((prev) => !prev);
+    }
+  };
+
   return (
     <div
       className={cx(
         styles.block,
         error && "input-with-error",
-        disable && styles.disable
+        disable && styles.disable,
       )}
     >
       {title && (
-        <div className={cx(fontTitleSize[size])}>
+        <div className={fontSize[size]}>
           {title}
           {required && <span className={styles.requiredSymbol}> *</span>}
         </div>
@@ -128,16 +148,14 @@ function Input({
           "d-flex",
           error && styles.error,
           disable && styles.disabled,
-          addClass
+          addClass,
         )}
       >
         {icon && <div className={styles.icon}>{icon}</div>}
         <input
           aria-label={ariaLabel}
           placeholder={placeholder}
-          type={
-            type === "letters-only" || type === "digits-only" ? "text" : type
-          }
+          type={inputType}
           ref={ref}
           value={value}
           onChange={(e) => handleChange(e?.target.value)}
@@ -148,25 +166,47 @@ function Input({
             type === "letters-only"
               ? "[a-zA-Zа-яА-ЯёЁ\\s\\-–—]*"
               : type === "digits-only"
-              ? "[0-9]*"
-              : undefined
+                ? "[0-9]*"
+                : undefined
           }
           inputMode={type === "digits-only" ? "numeric" : undefined}
           onKeyDown={handleKeyPress}
           maxLength={maxLength}
           onFocus={onFocus}
         />
-        {clearBtn && value && (
-          <div className={styles.clearBtnWrap}>
+        {isPasswordField ? (
+          <div
+            className={styles.clearBtnWrap}
+            onMouseEnter={() => setIsPasswordHovered(true)}
+            onMouseLeave={() => setIsPasswordHovered(false)}
+          >
             <button
               type="button"
-              title="Очистить"
-              className={styles.clearBtn}
-              onClick={() => onChange("")}
+              title={isPasswordVisible ? "Скрыть пароль" : "Показать пароль"}
+              aria-label={
+                isPasswordVisible ? "Скрыть пароль" : "Показать пароль"
+              }
+              aria-pressed={isPasswordVisible}
+              className={clsx(styles.clearBtn, styles.eyeComponent)}
+              onPointerUp={handlePasswordTogglePointerUp}
             >
-              <CloseCross />
+              <EyeIcon />
             </button>
           </div>
+        ) : (
+          clearBtn &&
+          value && (
+            <div className={styles.clearBtnWrap}>
+              <button
+                type="button"
+                title="Очистить"
+                className={styles.clearBtn}
+                onClick={() => onChange("")}
+              >
+                <CloseCross />
+              </button>
+            </div>
+          )
         )}
       </div>
       {caption && !error?.message && (

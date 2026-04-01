@@ -21,7 +21,7 @@
 }
 
 .wrap.error {
-  border-color: #f03d46;
+  border-color: var(--red);
 }
 
 .wrap.disabled {
@@ -63,13 +63,19 @@
   color: var(--tritiary);
 }
 
+/* Скрывает встроенные иконки браузера для password-полей */
+.input[type="password"]::-webkit-credentials-auto-fill-button,
+.input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 .icon svg {
   width: 100%;
   height: 100%;
 }
 
-.icon path {
-  fill: #54636d;
+.icon > * {
+  stroke: #54636d;
 }
 
 .xs .icon {
@@ -94,7 +100,7 @@
 }
 
 .l .icon {
-  margin: 2rem 8rem 2rem 0;
+  margin: 2rem 14rem 2rem 0;
   width: 24rem;
   min-width: 24rem;
   height: 24rem;
@@ -107,20 +113,23 @@
 }
 
 .error {
-  color: var(--primary-color);
+  color: var(--red);
 }
 
 .clearBtnWrap {
   width: 40rem;
   min-width: 40rem;
   padding-left: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .clearBtn {
   background-color: transparent;
   border: none;
-  width: 24rem;
-  height: 24rem;
+  width: 16rem;
+  height: 16rem;
   position: relative;
 }
 
@@ -131,9 +140,13 @@
   left: 0;
   position: absolute;
 }
+.eyeComponent {
+  width: 24rem !important;
+  height: 24rem !important;
+}
 
-.clearBtn svg path {
-  fill: var(--text-secondary);
+.clearBtn svg > * {
+  stroke: var(--text-secondary);
 }
 
 .disable {

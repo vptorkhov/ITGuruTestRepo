@@ -1,15 +1,15 @@
 :root {
   --text-base: #000000;
-  --text-secondary: #B2B3B9;
+  --text-secondary: #b2b3b9;
   --bg-overlay: rgba(0, 0, 0, 0.2);
-  --primary-color: #242EDB;
+  --primary-color: #242edb;
   --primary-hover: #1d25c5;
-  --primary-border-color: #367AFF;
+  --primary-border-color: #367aff;
   --tritiary: #cbcbcb;
   --secondary: #f5f9fb;
-  --base-bg-color: #F6F6F6;
+  --base-bg-color: #f6f6f6;
   --white: #ffffff;
-  --base-border-color: #EDEDED;
+  --base-border-color: #ededed;
   --text-xl-size: 18rem;
   --text-l-size: 16rem;
   --text-m-size: 14rem;
@@ -30,6 +30,7 @@
   --h4-lh: calc(26 / 22);
   --vh: 1vh;
   --vw: 1vw;
+  --red: #f11010;
 }
 
 * {
@@ -56,7 +57,6 @@ html {
   }
 }
 
-
 @media screen and (min-width: 992px) {
   :root {
     --h1-size: 44rem;
@@ -70,10 +70,13 @@ html {
   }
 }
 
-.body {
+body {
   color: var(--text-base);
   margin: 0;
   background-color: var(--base-bg-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .text-secondary {
@@ -88,6 +91,10 @@ html {
   color: var(--primary-color);
 }
 
+.text-error {
+  color: var(--red);
+}
+
 .d-flex {
   display: flex !important;
 }
@@ -95,7 +102,6 @@ html {
 .d-none {
   display: none !important;
 }
-
 
 .text-xl,
 .text-xl-semi {
@@ -179,8 +185,23 @@ html {
   font-weight: 700;
 }
 
-@media screen and (max-width:991.9px) {
+a {
+  text-decoration: none;
+}
 
+button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.underline {
+  text-decoration: underline !important;
+  text-decoration-thickness: 8%;
+  text-underline-offset: 21%;
+}
+
+@media screen and (max-width: 991.9px) {
   .text-xl-mob,
   .text-xl-semi-mob {
     font-size: var(--text-xl-size) !important;
