@@ -18,3 +18,8 @@ export const saveStorageData = (
   const storage = rememberMe ? localStorage : sessionStorage;
   storage.setItem(name, value);
 };
+
+export const removeStorageData = (name: string) => {
+  localStorage.removeItem(name);
+  sessionStorage.removeItem(name);
+}

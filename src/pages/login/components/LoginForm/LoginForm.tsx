@@ -10,7 +10,7 @@ import Button from "@/ui/Button/Button";
 import clsx from "clsx";
 import { loginUser } from "@/services/auth/auth.service";
 import { serializeLoginBodyData } from "./utils";
-import { isAxiosError, saveStorageData } from "@/utils/utils";
+import { isAxiosError, removeStorageData, saveStorageData } from "@/utils/utils";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -55,6 +55,11 @@ export default function LoginForm() {
           res.refreshToken,
           dataInForm?.rememberMe ?? false,
         );
+        if (dataInForm?.rememberMe) {
+          saveStorageData("rememberMe", "true", true);
+        } else{
+          removeStorageData("rememberMe");
+        }
         navigate("/");
       } catch (error) {
         if (isAxiosError<{ message: string }>(error)) {
