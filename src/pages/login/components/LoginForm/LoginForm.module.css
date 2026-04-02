@@ -1,0 +1,39 @@
+.wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16rem;
+  align-items: flex-start;
+}
+
+.input {
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+}
+
+.orWrap {
+  display: flex;
+  align-items: center;
+  gap: 16rem;
+  width: 100%;
+}
+
+.orWrapLine {
+  height: 1rem;
+  width: auto;
+  flex-grow: 1;
+  background-color: #ededed;
+}
+
+.orText {
+  color: #ebebeb;
+}
+
+@media screen and (min-width: 992px) {
+  .wrap {
+    gap: 20rem;
+  }
+}

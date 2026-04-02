@@ -1,0 +1,1 @@
+export const expiresTokenTime = 60; //в минутах
