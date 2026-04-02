@@ -10,7 +10,11 @@ import Button from "@/ui/Button/Button";
 import clsx from "clsx";
 import { loginUser } from "@/services/auth/auth.service";
 import { serializeLoginBodyData } from "./utils";
-import { isAxiosError, removeStorageData, saveStorageData } from "@/utils/utils";
+import {
+  isAxiosError,
+  removeStorageData,
+  saveStorageData,
+} from "@/utils/utils";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -57,7 +61,7 @@ export default function LoginForm() {
         );
         if (dataInForm?.rememberMe) {
           saveStorageData("rememberMe", "true", true);
-        } else{
+        } else {
           removeStorageData("rememberMe");
         }
         navigate("/");
@@ -73,6 +77,12 @@ export default function LoginForm() {
       } finally {
         setIsLoading(false);
       }
+    }
+  }
+
+  async function handleKeyPress() {
+    if (isValid) {
+      onSubmit();
     }
   }
 
@@ -93,6 +103,7 @@ export default function LoginForm() {
               icon={<UserIcon />}
               onBlur={() => trigger("login")}
               error={errors?.login}
+              onKeyPress={handleKeyPress}
             />
           )}
         />
@@ -112,6 +123,7 @@ export default function LoginForm() {
               type="password"
               onBlur={() => trigger("password")}
               error={errors?.password}
+              onKeyPress={handleKeyPress}
             />
           )}
         />
