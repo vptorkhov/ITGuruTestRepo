@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rem;
+  min-height: calc(100 * var(--vh));
+}
+
+.title {
+  text-align: center;
+  max-width: 100%;
+}
