@@ -5,3 +5,5 @@ export const LoginFormSchema = z.object({
   password: z.string().min(1, "Введите пароль"),
   rememberMe: z.boolean(),
 });
+
+export type TLoginFormData = z.infer<typeof LoginFormSchema>;
