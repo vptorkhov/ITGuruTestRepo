@@ -3,7 +3,11 @@ import styles from "./Menu.module.css";
 import RefreshIcon from "@/icons/RefreshIcon";
 import PlusCircleIcon from "@/icons/PlusCircleIcon";
 
-export default function Menu() {
+type TMenuProps = {
+  refreshData: () => void;
+};
+
+export default function Menu({ refreshData }: TMenuProps) {
   return (
     <div className={styles.wrap}>
       <div className="h4">Все позиции</div>
@@ -15,6 +19,7 @@ export default function Menu() {
           styleVariant="stroke"
           onlyIcon
           leftIcon={<RefreshIcon />}
+          onClick={refreshData}
         />
         <Button
           size={"m"}
