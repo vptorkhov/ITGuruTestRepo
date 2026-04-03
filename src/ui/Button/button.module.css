@@ -47,23 +47,25 @@
 .button.m {
   --button-padding: 10rem 20rem !important;
   --button-font-size: 16rem !important;
+  --button-border-radius: 6rem;
 }
 
 .button.l {
   --button-padding: 12rem 24rem !important;
   --button-font-size: 18rem !important;
+  --button-border-radius: 12rem;
 }
 
 .button.s {
   --button-padding: 8rem 16rem !important;
   --button-font-size: 14rem !important;
-  --button-border-radius: 12rem;
+  --button-border-radius: 6rem;
 }
 
 .button.xs {
   --button-padding: 7.25rem 12rem !important;
   --button-font-size: 12rem !important;
-  --button-border-radius: 16rem;
+  --button-border-radius: 6rem;
 }
 
 .button:hover {

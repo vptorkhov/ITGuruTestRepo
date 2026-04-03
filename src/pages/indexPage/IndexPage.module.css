@@ -1,0 +1,27 @@
+.page {
+  min-height: calc(100 * var(--vh));
+  display: flex;
+  flex-direction: column;
+  gap: 30rem;
+  padding-top: 20rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 24rem;
+  background-color: var(--white);
+  padding: 20rem 16rem;
+  flex-grow: 1;
+}
+
+.navigation {
+  margin-top: auto;
+}
+
+@media screen and (min-width: 992px) {
+  .body {
+    gap: 36rem;
+    padding: 28rem 30rem;
+  }
+}

@@ -61,8 +61,8 @@ html {
   :root {
     --h1-size: 44rem;
     --h2-size: 40rem;
-    --h3-size: 32rem;
-    --h4-size: 22rem;
+    --h3-size: 24rem;
+    --h4-size: 20rem;
   }
 
   html {
