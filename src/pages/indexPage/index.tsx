@@ -7,6 +7,7 @@ import { getProducts } from "@/services/products/products.service";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ProductsPerPage } from "@/constants/products.constants";
 import { useDebounce } from "@/hooks/useDebounce";
+import GoodsList from "./components/GoodsList/GoodsList";
 
 export default function IndexPage() {
   const [search, setSearch] = useState("");
@@ -46,6 +47,7 @@ export default function IndexPage() {
       <TitleBlock searchValue={search} onSearchChange={setSearch} />
       <div className={styles.body}>
         <Menu refreshData={refreshData} />
+        <GoodsList products={data?.products || []} isLoading={isLoading} />
         <PaginationBlock
           total={data?.total || 0}
           itemsPerPage={ProductsPerPage}
