@@ -1,0 +1,45 @@
+.wrap {
+  background-color: var(--white);
+  padding: 20rem 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rem;
+}
+
+.title {
+  margin-right: auto;
+}
+
+.inputWrap {
+  margin-left: auto;
+  flex-grow: 1;
+  max-width: 1023rem;
+}
+
+.void {
+  display: none;
+  margin-left: auto;
+}
+
+.input {
+  background-color: #f3f3f3 !important;
+  border-radius: 8rem !important;
+}
+
+@media screen and (min-width: 992px) {
+  .wrap {
+    padding: 28rem 30rem;
+  }
+  .inputWrap {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .void {
+    display: block;
+    width: 113rem;
+  }
+  .title {
+    width: 113rem;
+  }
+}

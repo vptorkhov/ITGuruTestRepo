@@ -1,0 +1,72 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 16rem;
+}
+
+.arrowBtn {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+  --arrow-color: var(--text-secondary);
+  opacity: 1;
+  transition-duration: 0.4s;
+}
+.arrowBtn:hover {
+  --arrow-color: var(--text-base);
+}
+
+.arrowBtnDisabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.arrowBtn > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arrowBtn svg > * {
+  stroke: var(--arrow-color);
+  transition-duration: 0.4s;
+}
+
+.btnsWrap {
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+}
+
+.btn {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 4rem;
+  transition-duration: 0.4s;
+  position: relative;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1rem solid var(--text-secondary);
+}
+
+.btnDisabled {
+  pointer-events: none;
+}
+
+.btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14rem;
+  line-height: 100%;
+}
+
+.btnActive,
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
