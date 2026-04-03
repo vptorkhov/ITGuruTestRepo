@@ -6,9 +6,10 @@ export async function getProducts(
   skip: number = 0,
   sortBy?: "title" | "brand" | "sku" | "rating" | "price" | null,
   order: "asc" | "desc" = "asc",
+  search?: string | null,
 ): Promise<TProductResponse> {
   const res = await axiosInstance.get(
-    `/products?${limit ? `limit=${limit}&` : ""}${skip ? `skip=${skip}&` : ""}${sortBy ? `sortBy=${sortBy}&order=${order}` : ""}`,
+    `/products${search ? `/search?q=${search}&` : "?"}${limit ? `limit=${limit}&` : ""}${skip ? `skip=${skip}&` : ""}${sortBy ? `sortBy=${sortBy}&order=${order}` : ""}`,
   );
   try {
     ProductResponseSchema.parse(res.data);

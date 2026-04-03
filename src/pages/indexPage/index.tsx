@@ -6,9 +6,11 @@ import PaginationBlock from "./components/PaginationBlock/PaginationBlock";
 import { getProducts } from "@/services/products/products.service";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ProductsPerPage } from "@/constants/products.constants";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function IndexPage() {
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
   const [pageNumber, setPageNumber] = useState(1);
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [sortBy, setSortBy] = useState<
@@ -16,13 +18,14 @@ export default function IndexPage() {
   >(null);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["products", pageNumber, sortBy, order],
+    queryKey: ["products", pageNumber, sortBy, order, debouncedSearch],
     queryFn: () =>
       getProducts(
         ProductsPerPage,
         (pageNumber - 1) * ProductsPerPage,
         sortBy,
         order,
+        debouncedSearch,
       ),
   });
 
@@ -30,9 +33,9 @@ export default function IndexPage() {
 
   const refreshData = useCallback(() => {
     queryClient.invalidateQueries({
-      queryKey: ["products", pageNumber, sortBy, order],
+      queryKey: ["products", pageNumber, sortBy, order, debouncedSearch],
     });
-  }, [queryClient, pageNumber, sortBy, order]);
+  }, [queryClient, pageNumber, sortBy, order, debouncedSearch]);
 
   useEffect(() => {
     console.log(data);
@@ -42,7 +45,7 @@ export default function IndexPage() {
     <div className={styles.page}>
       <TitleBlock searchValue={search} onSearchChange={setSearch} />
       <div className={styles.body}>
-        <Menu refreshData={refreshData}/>
+        <Menu refreshData={refreshData} />
         <PaginationBlock
           total={data?.total || 0}
           itemsPerPage={ProductsPerPage}
