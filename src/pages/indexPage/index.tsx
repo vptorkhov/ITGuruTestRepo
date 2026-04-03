@@ -13,8 +13,8 @@ export default function IndexPage() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const [pageNumber, setPageNumber] = useState(1);
-  const [order, setOrder] = useState<"asc" | "desc">("asc");
-  const [sortBy, setSortBy] = useState<
+  const [order, _setOrder] = useState<"asc" | "desc">("asc");
+  const [sortBy, _setSortBy] = useState<
     "title" | "brand" | "sku" | "rating" | "price" | null
   >(null);
 
