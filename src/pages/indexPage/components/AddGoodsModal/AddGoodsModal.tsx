@@ -45,8 +45,10 @@ export default function AddGoodsModal({
       setIsLoading(true);
       try {
         const res = await addProduct(dataInForm as TAddGoodsModalForm);
-        setGoodsAdded(true);
-        closeModal();
+        if (res) {
+          setGoodsAdded(true);
+          closeModal();
+        }
       } catch (error) {
         console.log(error);
       } finally {
