@@ -46,7 +46,7 @@ export default function GoodsItemRow({ product }: TGoodsItemRowProps) {
       </div>
       <div className={styles.infoWrap}>
         <div className="text-l text-thin">
-          <span className={clsx(product.rating <= 3.5 && "text-error")}>
+          <span className={clsx(product.rating < 3.5 && "text-error")}>
             {product.rating}
           </span>
           /5
