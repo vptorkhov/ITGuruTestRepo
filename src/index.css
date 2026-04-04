@@ -79,6 +79,10 @@ body {
   min-height: 100vh;
 }
 
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
 .text-secondary {
   color: var(--text-secondary);
 }
@@ -153,7 +157,7 @@ body {
 .text-semi {
   font-weight: 700 !important;
 }
-.text-thin{
+.text-thin {
   font-weight: 300 !important;
 }
 
@@ -192,7 +196,7 @@ a {
   text-decoration: none;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
   cursor: pointer;

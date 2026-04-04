@@ -5,9 +5,10 @@ import PlusCircleIcon from "@/icons/PlusCircleIcon";
 
 type TMenuProps = {
   refreshData: () => void;
+  openModal: () => void;
 };
 
-export default function Menu({ refreshData }: TMenuProps) {
+export default function Menu({ refreshData, openModal }: TMenuProps) {
   return (
     <div className={styles.wrap}>
       <div className="h4">Все позиции</div>
@@ -26,6 +27,7 @@ export default function Menu({ refreshData }: TMenuProps) {
           variant="primary"
           text="Добавить"
           leftIcon={<PlusCircleIcon />}
+          onClick={openModal}
         />
       </div>
     </div>

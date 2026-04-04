@@ -1,3 +1,4 @@
+import type { TAddGoodsModalForm } from "@/pages/indexPage/components/AddGoodsModal/form-types";
 import { axiosInstance } from "../axiosInstance";
 import { ProductResponseSchema, type TProductResponse } from "./products.types";
 
@@ -16,5 +17,10 @@ export async function getProducts(
   } catch {
     throw new Error("Неверные данные с сервера, /products");
   }
+  return res.data;
+}
+
+export async function addProduct(data: TAddGoodsModalForm) {
+  const res = await axiosInstance.post("/products/add", data);
   return res.data;
 }

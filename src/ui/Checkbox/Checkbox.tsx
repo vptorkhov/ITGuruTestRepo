@@ -15,6 +15,7 @@ export type TCheckbox = {
   checkboxRef?: React.RefObject<HTMLDivElement | null>;
   disable?: boolean;
   productCheck?: boolean;
+  name?: string;
 };
 
 export default function Checkbox({
@@ -28,6 +29,7 @@ export default function Checkbox({
   checkboxRef,
   disable = false,
   productCheck = false,
+  name,
 }: TCheckbox) {
   return (
     <div
@@ -49,6 +51,7 @@ export default function Checkbox({
           onChange={(e) => onChange(e)}
           type="checkbox"
           className={styles.checkbox}
+          name={name}
         />
         <div className={cx(styles["size-" + size], styles.box)}>
           {value && !productCheck && <Check />}
