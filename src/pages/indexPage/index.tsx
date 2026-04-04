@@ -49,9 +49,9 @@ export default function IndexPage() {
 
   const refreshData = useCallback(() => {
     queryClient.invalidateQueries({
-      queryKey: ["products", pageNumber, sortBy, order, debouncedSearch],
+      queryKey: ["products"],
     });
-  }, [queryClient, pageNumber, sortBy, order, debouncedSearch]);
+  }, [queryClient]);
 
   useEffect(() => {
     if (pageNumber !== 1) {
