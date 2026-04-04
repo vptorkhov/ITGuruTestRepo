@@ -9,6 +9,8 @@ import { ProductsPerPage } from "@/constants/products.constants";
 import { useDebounce } from "@/hooks/useDebounce";
 import GoodsList from "./components/GoodsList/GoodsList";
 import { getStorageData, saveStorageData } from "@/utils/utils";
+import AddGoodsModal from "./components/AddGoodsModal/AddGoodsModal";
+import Toast from "@/ui/Toast/Toast";
 
 export default function IndexPage() {
   const [search, setSearch] = useState("");
@@ -18,6 +20,18 @@ export default function IndexPage() {
   const [sortBy, setSortBy] = useState<
     "title" | "brand" | "sku" | "rating" | "price" | null
   >(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [goodsAdded, setGoodsAdded] = useState(false);
+
+  const openModal = useCallback(() => {
+    document.querySelector("body")?.classList.add("overflow-hidden");
+    setIsModalOpen(true);
+  }, []);
+  const closeModal = useCallback(() => {
+    document.querySelector("body")?.classList.remove("overflow-hidden");
+    setIsModalOpen(false);
+  }, []);
 
   const { data, isLoading } = useQuery({
     queryKey: ["products", pageNumber, sortBy, order, debouncedSearch],
@@ -35,9 +49,9 @@ export default function IndexPage() {
 
   const refreshData = useCallback(() => {
     queryClient.invalidateQueries({
-      queryKey: ["products", pageNumber, sortBy, order, debouncedSearch],
+      queryKey: ["products"],
     });
-  }, [queryClient, pageNumber, sortBy, order, debouncedSearch]);
+  }, [queryClient]);
 
   useEffect(() => {
     if (pageNumber !== 1) {
@@ -67,7 +81,7 @@ export default function IndexPage() {
       saveStorageData("sortBy", sortBy, true);
     }
   }, [sortBy]);
-  
+
   useEffect(() => {
     if (order) {
       saveStorageData("order", order, true);
@@ -78,7 +92,7 @@ export default function IndexPage() {
     <div className={styles.page}>
       <TitleBlock searchValue={search} onSearchChange={setSearch} />
       <div className={styles.body}>
-        <Menu refreshData={refreshData} />
+        <Menu refreshData={refreshData} openModal={openModal} />
         <GoodsList
           products={data?.products || []}
           isLoading={isLoading}
@@ -95,6 +109,18 @@ export default function IndexPage() {
           setCurrentPageNumber={setPageNumber}
         />
       </div>
+      {isModalOpen && (
+        <AddGoodsModal
+          closeModal={closeModal}
+          setGoodsAdded={setGoodsAdded}
+          refreshData={refreshData}
+        />
+      )}
+      <Toast
+        active={goodsAdded}
+        onClose={() => setGoodsAdded(false)}
+        title="Товар добавлен"
+      />
     </div>
   );
 }

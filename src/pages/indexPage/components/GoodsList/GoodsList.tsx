@@ -2,6 +2,7 @@ import type { TProduct } from "@/services/products/products.types";
 import styles from "./GoodsList.module.css";
 import GoodsHeadRow from "./GoodsRow/GoodsHeadRow";
 import GoodsItemRow from "./GoodsRow/GoodsItemRow";
+import Loader from "@/ui/Loader/Loader";
 
 type TGoodsListProps = {
   products: TProduct[];
@@ -32,7 +33,7 @@ export default function GoodsList({
           setSortBy={setSortBy}
         />
         {isLoading ? (
-          <div className="text-xl">Loading...</div>
+          <Loader />
         ) : (
           products.map((product) => (
             <GoodsItemRow key={product.id} product={product} />

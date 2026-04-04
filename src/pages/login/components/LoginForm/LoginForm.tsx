@@ -99,6 +99,7 @@ export default function LoginForm() {
               placeholder="Введите логин"
               size="l"
               title="Логин"
+              name="login"
               clearBtn
               icon={<UserIcon />}
               onBlur={() => trigger("login")}
@@ -119,6 +120,7 @@ export default function LoginForm() {
               placeholder="Введите пароль"
               size="l"
               title="Пароль"
+              name="password"
               icon={<LockIcon />}
               type="password"
               onBlur={() => trigger("password")}
@@ -139,6 +141,7 @@ export default function LoginForm() {
               <span className="text-l text-secondary">Запомнить меня</span>
             }
             size="m"
+            name="rememberMe"
           />
         )}
       />
