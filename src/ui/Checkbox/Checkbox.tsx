@@ -7,25 +7,27 @@ import type { FieldError } from "react-hook-form";
 export type TCheckbox = {
   value: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: ReactNode;
+  label?: ReactNode | null;
   size?: "xs" | "s" | "m" | "l";
   addClass?: string;
   align?: "center" | "start";
   error?: FieldError;
   checkboxRef?: React.RefObject<HTMLDivElement | null>;
   disable?: boolean;
+  productCheck?: boolean;
 };
 
 export default function Checkbox({
   value,
   onChange,
-  label,
+  label = null,
   addClass,
   size = "m",
   align = "start",
   error,
   checkboxRef,
   disable = false,
+  productCheck = false,
 }: TCheckbox) {
   return (
     <div
@@ -34,6 +36,7 @@ export default function Checkbox({
         error && "input-with-error",
         addClass,
         disable && styles.disable,
+        productCheck && styles.productCheck,
       )}
       ref={checkboxRef}
     >
@@ -48,7 +51,7 @@ export default function Checkbox({
           className={styles.checkbox}
         />
         <div className={cx(styles["size-" + size], styles.box)}>
-          {value && <Check />}
+          {value && !productCheck && <Check />}
         </div>
         {label}
       </label>

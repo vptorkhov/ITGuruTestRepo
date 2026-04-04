@@ -58,6 +58,10 @@
   background-color: var(--primary-color);
 }
 
+.productCheck.checked .box {
+  background-color: #3c538e;
+}
+
 .box path {
   fill: var(--white);
 }

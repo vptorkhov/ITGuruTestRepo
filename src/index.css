@@ -153,6 +153,9 @@ body {
 .text-semi {
   font-weight: 700 !important;
 }
+.text-thin{
+  font-weight: 300 !important;
+}
 
 .h1 {
   font-size: var(--h1-size);

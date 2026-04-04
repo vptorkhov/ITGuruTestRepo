@@ -1,0 +1,145 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16rem;
+  border-bottom: 1rem solid var(--base-border-color);
+}
+
+.headRow {
+  padding: 24rem 0;
+}
+
+.itemRow {
+  padding: 10rem 0;
+  border-left: 3rem solid transparent;
+  transition-duration: 0.4s;
+}
+
+.checkWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55rem;
+}
+
+.itemRow.checked {
+  border-left-color: #3c538e;
+}
+
+.nameWrap {
+  display: flex;
+  gap: 16rem;
+  align-items: center;
+  min-width: 270rem;
+  width: 334rem;
+}
+
+.goodsImg {
+  width: 48rem;
+  height: 48rem;
+  overflow: hidden;
+  background-color: #c4c4c4;
+  border-radius: 8rem;
+}
+.goodsImg > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: calc(100% - 64rem);
+}
+
+.title {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.infoWrap {
+  display: flex;
+  gap: 16rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 160rem;
+  width: 240rem;
+}
+
+.infoWrap > * {
+  text-align: center;
+}
+
+.btnsWrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32rem;
+  flex-grow: 1;
+  min-width: 200rem;
+  padding-right: 66rem;
+}
+
+.plusBtn {
+  width: 52rem;
+  height: 27rem;
+  border-radius: 23rem;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--primary-color);
+}
+.plusBtn > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  height: 24rem;
+}
+
+.dotsBtn {
+  width: 32rem;
+  height: 32rem;
+  position: relative;
+}
+.dotsBtn > * {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.menuTitle {
+  position: relative;
+  cursor: pointer;
+}
+
+.menuBtn {
+  position: absolute;
+  left: calc(100% + 8rem);
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24rem;
+  height: 24rem;
+  --transform: scaleY(-1);
+}
+.menuBtn.menuBtnDesc {
+  --transform: scaleY(1);
+}
+
+.menuBtn > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.4s;
+  transform: var(--transform);
+  fill: var(--text-base);
+}

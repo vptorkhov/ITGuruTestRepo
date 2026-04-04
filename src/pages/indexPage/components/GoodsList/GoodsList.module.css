@@ -7,18 +7,3 @@
   min-width: 1300rem;
   width: 100%;
 }
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 16rem;
-  border-bottom: 1rem solid var(--base-border-color);
-}
-
-.headRow {
-  padding: 24rem 0;
-}
-
-.itemRow {
-  padding: 10rem 0;
-}

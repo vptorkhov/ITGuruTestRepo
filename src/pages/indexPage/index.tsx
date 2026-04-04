@@ -8,13 +8,14 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ProductsPerPage } from "@/constants/products.constants";
 import { useDebounce } from "@/hooks/useDebounce";
 import GoodsList from "./components/GoodsList/GoodsList";
+import { getStorageData, saveStorageData } from "@/utils/utils";
 
 export default function IndexPage() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const [pageNumber, setPageNumber] = useState(1);
-  const [order, _setOrder] = useState<"asc" | "desc">("asc");
-  const [sortBy, _setSortBy] = useState<
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [sortBy, setSortBy] = useState<
     "title" | "brand" | "sku" | "rating" | "price" | null
   >(null);
 
@@ -39,15 +40,53 @@ export default function IndexPage() {
   }, [queryClient, pageNumber, sortBy, order, debouncedSearch]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    if (pageNumber !== 1) {
+      setPageNumber(1);
+    }
+  }, [debouncedSearch, sortBy, order]);
+
+  useEffect(() => {
+    const savedSortBy = getStorageData("sortBy") as
+      | "title"
+      | "brand"
+      | "sku"
+      | "rating"
+      | "price"
+      | null;
+    const savedOrder = getStorageData("order") as "asc" | "desc" | null;
+    if (savedSortBy) {
+      setSortBy(savedSortBy);
+    }
+    if (savedOrder) {
+      setOrder(savedOrder);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (sortBy) {
+      saveStorageData("sortBy", sortBy, true);
+    }
+  }, [sortBy]);
+  
+  useEffect(() => {
+    if (order) {
+      saveStorageData("order", order, true);
+    }
+  }, [order]);
 
   return (
     <div className={styles.page}>
       <TitleBlock searchValue={search} onSearchChange={setSearch} />
       <div className={styles.body}>
         <Menu refreshData={refreshData} />
-        <GoodsList products={data?.products || []} isLoading={isLoading} />
+        <GoodsList
+          products={data?.products || []}
+          isLoading={isLoading}
+          order={order}
+          setOrder={setOrder}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
         <PaginationBlock
           total={data?.total || 0}
           itemsPerPage={ProductsPerPage}
