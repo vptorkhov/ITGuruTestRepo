@@ -12,11 +12,14 @@ import { addProduct } from "@/services/products/products.service";
 type TAddGoodsModalProps = {
   closeModal: () => void;
   setGoodsAdded: React.Dispatch<React.SetStateAction<boolean>>;
+  refreshData: () => void;
 };
 
 export default function AddGoodsModal({
   closeModal,
   setGoodsAdded,
+  refreshData,
+
 }: TAddGoodsModalProps) {
   const formMethods = useForm({
     defaultValues: {
@@ -47,6 +50,7 @@ export default function AddGoodsModal({
         const res = await addProduct(dataInForm as TAddGoodsModalForm);
         if (res) {
           setGoodsAdded(true);
+          refreshData();
           closeModal();
         }
       } catch (error) {

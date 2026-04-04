@@ -20,12 +20,9 @@ export default function RequireAuth({ children }: TRequireAuthProps) {
     const refreshToken = getStorageData("refreshToken");
     const rememberMe = getStorageData("rememberMe");
     if (!(token || refreshToken)) {
-      console.log(1);
       navigate("/login");
     }
     if (!token && refreshToken) {
-      console.log(2);
-
       const res = await getUserDataWithRefreshToken(
         refreshToken,
         navigate,
@@ -36,16 +33,12 @@ export default function RequireAuth({ children }: TRequireAuthProps) {
       }
     }
     if (token && !refreshToken) {
-      console.log(3);
-
       const res = await getUserDataWithAccessToken(token, navigate);
       if (res) {
         setIsAuthenticated(true);
       }
     }
     if (token && refreshToken) {
-      console.log(4);
-
       const res = await getUserDataWithBothTokens(
         token,
         refreshToken,

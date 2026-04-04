@@ -109,7 +109,13 @@ export default function IndexPage() {
           setCurrentPageNumber={setPageNumber}
         />
       </div>
-      {isModalOpen && <AddGoodsModal closeModal={closeModal} setGoodsAdded={setGoodsAdded}/>}
+      {isModalOpen && (
+        <AddGoodsModal
+          closeModal={closeModal}
+          setGoodsAdded={setGoodsAdded}
+          refreshData={refreshData}
+        />
+      )}
       <Toast
         active={goodsAdded}
         onClose={() => setGoodsAdded(false)}
